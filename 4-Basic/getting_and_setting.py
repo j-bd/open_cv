@@ -39,11 +39,11 @@ def display(path):
 
 def change_pix(image):
     '''Modify pixcel value'''
-    (b, g, r) = image[0, 0]
-    print(f"Pixel at (0, 0) - Red: {r}, Green: {g}, Blue: {b}")
+    (ch_b, ch_g, ch_r) = image[0, 0]
+    print(f"Pixel at (0, 0) - Red: {ch_r}, Green: {ch_g}, Blue: {ch_b}")
     image[0, 0] = (0, 0, 255)
-    (b, g, r) = image[0, 0]
-    print(f"Pixel at (0, 0) - Red: {r}, Green: {g}, Blue: {b}")
+    (ch_b, ch_g, ch_r) = image[0, 0]
+    print(f"Pixel at (0, 0) - Red: {ch_r}, Green: {ch_g}, Blue: {ch_b}")
     cv2.imshow("Updated", image)
     cv2.waitKey()
 
@@ -51,8 +51,9 @@ def change_zone(image):
     '''Modify multiple pixels'''
     corner = image[2:50, 2:50]
     cv2.imshow("Corner", corner)
+    cv2.waitKey()
     image[2:50, 2:50] = (0, 255, 0)
-    cv2.imshow("Updated", image)
+    cv2.imshow("Updated_", image)
     cv2.waitKey()
 
 def main():
