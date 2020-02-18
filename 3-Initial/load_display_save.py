@@ -31,9 +31,23 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def display(path):
+    '''Display information about image'''
+    image = cv2.imread(path)
+    print(f"width: {image.shape[1]} pixels")
+    print(f"height: {image.shape[0]} pixels")
+    print(f"channels: {image.shape[2]}")
+    cv2.imshow("Image", image)
+    cv2.waitKey()
+    return image
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
+
+    image = display(args["image"])
+
+    cv2.imwrite("newimage.png", image)
 
 
 if __name__ == "__main__":
