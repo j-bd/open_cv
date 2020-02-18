@@ -37,11 +37,31 @@ def display(path):
     cv2.waitKey()
     return image
 
+def change_pix(image):
+    '''Modify pixcel value'''
+    (b, g, r) = image[0, 0]
+    print(f"Pixel at (0, 0) - Red: {r}, Green: {g}, Blue: {b}")
+    image[0, 0] = (0, 0, 255)
+    (b, g, r) = image[0, 0]
+    print(f"Pixel at (0, 0) - Red: {r}, Green: {g}, Blue: {b}")
+    cv2.imshow("Updated", image)
+    cv2.waitKey()
+
+def change_zone(image):
+    '''Modify multiple pixels'''
+    corner = image[2:50, 2:50]
+    cv2.imshow("Corner", corner)
+    image[2:50, 2:50] = (0, 255, 0)
+    cv2.imshow("Updated", image)
+    cv2.waitKey()
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
 
     image = display(args["image"])
+    change_pix(image)
+    change_zone(image)
 
 
 if __name__ == "__main__":
