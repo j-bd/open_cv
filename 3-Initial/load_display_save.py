@@ -26,7 +26,7 @@ def arguments_parser():
         '''
     )
     parser.add_argument(
-        "-i", "--image", required = True, help = "Path to the image"
+        "-i", "--image", required=True, help="Path to the image"
     )
     args = vars(parser.parse_args())
     return args
