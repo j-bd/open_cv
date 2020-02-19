@@ -55,6 +55,19 @@ def bullseye(image):
     cv2.waitKey()
     return image
 
+def random_circles(image):
+    '''Draw random circles'''
+    for i in range(0, 25):
+        radius = np.random.randint(5, high = 200)
+        color = np.random.randint(0, high = 256, size = (3,)).tolist()
+        center_coordinate = np.random.randint(0, high = 300, size = (2,))
+        cv2.circle(image, tuple(center_coordinate), radius, color, -1)
+    path = "/home/latitude/Documents/Kaggle/newimage.jpg"
+    cv2.imwrite(path, image)
+    cv2.imshow("Canvas", image)
+    cv2.waitKey()
+    return image
+
 def main():
     '''Launch main steps'''
     canvas = image_init()
@@ -63,6 +76,9 @@ def main():
 
     canvas = image_init()
     canvas = bullseye(canvas)
+
+    canvas = image_init()
+    canvas = random_circles(canvas)
 
 
 if __name__ == "__main__":
