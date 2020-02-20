@@ -33,10 +33,23 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def translate(image):
+    '''Translate image in a predefined way'''
+    mat = np.float32([[1, 0, 25], [0, 1, 50]])
+    shifted = cv2.warpAffine(image, mat, (image.shape[1], image.shape[0]))
+    cv2.imshow("Shifted Down and Right", shifted)
+
+    mat = np.float32([[1, 0, -50], [0, 1, -90]])
+    shifted = cv2.warpAffine(image, mat, (image.shape[1], image.shape[0]))
+    cv2.imshow("Shifted Up and Left", shifted)
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
+    image = cv2.imread(args["image"])
+    cv2.imshow("Original", image)
 
+    translate(image)
 
 
 if __name__ == "__main__":
