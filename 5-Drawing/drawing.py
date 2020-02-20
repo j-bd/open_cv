@@ -47,10 +47,10 @@ def rectangles(image):
 
 def bullseye(image):
     '''Draw a predefined bullseye'''
-    (centerX, centerY) = (image.shape[1] // 2, image.shape[0] // 2)
+    (center_x, center_y) = (image.shape[1] // 2, image.shape[0] // 2)
     white = (255, 255, 255)
     for radius in range(0, 200, 25):
-        cv2.circle(image, (centerX, centerY), radius, white, 2)
+        cv2.circle(image, (center_x, center_y), radius, white, 2)
     cv2.imshow("Canvas", image)
     cv2.waitKey()
     return image
