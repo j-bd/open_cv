@@ -47,6 +47,8 @@ def main():
     image = cv2.imread(args["image"])
     cv2.imshow("Original", image)
 
+    resize(image)
+
 
 if __name__ == "__main__":
     main()
