@@ -40,8 +40,13 @@ def masking(image):
         mask, (cent_x - 75, cent_y - 75), (cent_x + 75, cent_y + 75), 255, -1
     )
     cv2.imshow("Mask", mask)
-
     masked = cv2.bitwise_and(image, image, mask=mask)
+    cv2.imshow("Mask Applied to Image", masked)
+
+    mask = np.zeros(image.shape[:2], dtype = "uint8")
+    cv2.circle(mask, (cent_x, cent_y), 100, 255, -1)
+    masked = cv2.bitwise_and(image, image, mask = mask)
+    cv2.imshow("Mask", mask)
     cv2.imshow("Mask Applied to Image", masked)
 
 def main():
