@@ -32,6 +32,18 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def masking(image):
+    '''Apply predifined mask on the image'''
+    mask = np.zeros(image.shape[:2], dtype="uint8")
+    (cent_x, cent_y) = (image.shape[1] // 2, image.shape[0] // 2)
+    cv2.rectangle(
+        mask, (cent_x - 75, cent_y - 75), (cent_x + 75, cent_y + 75), 255, -1
+    )
+    cv2.imshow("Mask", mask)
+
+    masked = cv2.bitwise_and(image, image, mask=mask)
+    cv2.imshow("Mask Applied to Image", masked)
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
@@ -39,7 +51,8 @@ def main():
     image = cv2.imread(args["image"])
     cv2.imshow("Original", image)
 
+    masking(image)
+
 
 if __name__ == "__main__":
     main()
-
