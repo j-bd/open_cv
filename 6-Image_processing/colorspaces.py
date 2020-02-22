@@ -52,6 +52,8 @@ def main():
     image = cv2.imread(args["image"])
     cv2.imshow("Original", image)
 
+    color_spaces(image)
+
 
 if __name__ == "__main__":
     main()
