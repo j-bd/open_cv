@@ -32,6 +32,19 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def color_spaces(image):
+    '''Provides different color space of image given'''
+    cv2.imshow("Original", image)
+
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cv2.imshow("Gray", gray)
+
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    cv2.imshow("HSV", hsv)
+
+    lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+    cv2.imshow("L*a*b*", lab)
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
