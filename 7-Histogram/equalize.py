@@ -10,18 +10,17 @@ import argparse
 
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
 
 
 def arguments_parser():
     '''Retrieve user commands'''
     parser = argparse.ArgumentParser(
-        prog="Multi-dimensional histograms",
+        prog="Histogram equalizer",
         usage='''%(prog)s [OpenCV]''',
         formatter_class=argparse.RawDescriptionHelpFormatter, description='''
         To lauch execution:
         -------------------------------------
-        python3 mult_dim_hist.py
+        python3 equalize.py
         --image "path/to/image/directory"
 
         All arguments are mandatory.
@@ -33,12 +32,19 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def hist_equ(image):
+    '''Realize an histogram equalization'''
+    hist_eq = cv2.equalizeHist(image)
+    cv2.imshow("Histogram Equalization", np.hstack([image, hist_eq]))
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
 
-    image = cv2.imread(args["image"])
+    image = cv2.imread(args["image"], 0)
     cv2.imshow("Original", image)
+
+    hist_equ(image)
 
 
 if __name__ == "__main__":
