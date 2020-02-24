@@ -33,12 +33,22 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def averaging_blur(image):
+    '''Compute blur image with predefined kernel'''
+    blurred = np.hstack(
+        [image, cv2.blur(image, (3, 3)), cv2.blur(image, (5, 5)),
+         cv2.blur(image, (7, 7))]
+    )
+    cv2.imshow("Averaged", blurred)
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
 
     image = cv2.imread(args["image"])
     cv2.imshow("Original", image)
+
+    averaging_blur(image)
 
 
 if __name__ == "__main__":
