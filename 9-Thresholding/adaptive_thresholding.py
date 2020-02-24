@@ -9,7 +9,6 @@ Created on Mon Feb 24 17:17:29 2020
 import argparse
 
 import cv2
-import numpy as np
 
 
 def arguments_parser():
@@ -32,12 +31,28 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def adaptive_thresh(blurred):
+    '''Apply adaptive thresholding'''
+    thresh = cv2.adaptiveThreshold(
+        blurred, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 4
+    )
+    cv2.imshow("Mean Thresh", thresh)
+
+    thresh = cv2.adaptiveThreshold(
+        blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 15,
+        3
+    )
+    cv2.imshow("Gaussian Thresh", thresh)
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
 
     image = cv2.imread(args["image"], 0)
     cv2.imshow("Original", image)
+    blurred = cv2.GaussianBlur(image, (5, 5), 0)
+
+    adaptive_thresh(blurred)
 
 
 if __name__ == "__main__":
