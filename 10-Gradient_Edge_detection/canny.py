@@ -9,7 +9,6 @@ Created on Tue Feb 25 11:17:51 2020
 import argparse
 
 import cv2
-import numpy as np
 
 
 def arguments_parser():
@@ -32,12 +31,20 @@ def arguments_parser():
     args = vars(parser.parse_args())
     return args
 
+def canny_filter(image):
+    '''Apply Canny filter'''
+    canny = cv2.Canny(image, 30, 150)
+    cv2.imshow("Canny", canny)
+
 def main():
     '''Launch main steps'''
     args = arguments_parser()
 
     image = cv2.imread(args["image"], 0)
     cv2.imshow("Original", image)
+    image = cv2.GaussianBlur(image, (5, 5), 0)
+
+    canny_filter(image)
 
 
 if __name__ == "__main__":
