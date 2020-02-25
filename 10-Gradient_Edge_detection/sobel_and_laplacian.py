@@ -60,6 +60,7 @@ def main():
     cv2.imshow("Original", image)
 
     laplacian(image)
+    sobel(image)
 
 
 if __name__ == "__main__":
